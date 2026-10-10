@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Il tuo negozio nerd a Carcare!">
+  <title>Lo-Cast Collector | TCG, Manga, Action Figure e Gadget</title>
+  <style>
+    :root {
+      --bg: #100d19;
+      --card: #1c1729;
+      --purple: #a78bfa;
+      --white: #f8f6ff;
+      --muted: #c4bdd5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--white);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 24px 18px;
+      text-align: center;
+      border-bottom: 1px solid #332844;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--purple);
+      font-size: clamp(25px, 5vw, 38px);
+    }
+
+    header p { margin: 5px 0 0; color: var(--muted); }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 35px 18px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .hero h2 {
+      font-size: clamp(28px, 6vw, 44px);
+      line-height: 1.15;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 580px;
+      margin: 0 auto 25px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--purple);
+      color: #160e24;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 12px 22px;
+      margin: 5px;
+      border-radius: 8px;
+    }
+
+    .button.secondary {
+      color: var(--white);
+      background: var(--card);
+      border: 1px solid #55436f;
+    }
+
+    h2.section-title { text-align: center; margin-top: 35px; }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 25px 0 40px;
+    }
+
+    .category {
+      background: var(--card);
+      border: 1px solid #332844;
+      border-radius: 12px;
+      padding: 22px 12px;
+      text-align: center;
+    }
+
+    .category .emoji { font-size: 30px; }
+    .category h3 { margin: 7px 0 0; }
+
+    .info {
+      background: var(--card);
+      border: 1px solid #332844;
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 18px;
+    }
+
+    .info h2 { color: var(--purple); margin-top: 0; }
+    .info p { color: var(--muted); }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: var(--muted);
+      border-top: 1px solid #332844;
+      font-size: 14px;
+    }
+
+    a { overflow-wrap: anywhere; }
+
+    @media (max-width: 420px) {
+      .categories { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Lo-Cast Collector</h1>
+    <p>Il tuo mondo nerd, tutto da scoprire!</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>La tua prossima passione ti aspetta.</h2>
+      <p>
+        Carte collezionabili, manga, action figure e gadget:
+        scopri il nostro mondo dedicato agli appassionati
+        di anime, fumetti e giochi di carte.
+      </p>
+      <a class="button" href="#contatti">Contattaci</a>
+      <a class="button secondary"
+         href="https://www.instagram.com/locastcollector?cplk=b2Y5YXI6MHBnMjdm"
+         target="_blank" rel="noopener">Seguici su Instagram</a>
+    </section>
+
+    <h2 class="section-title">Cosa trovi in negozio</h2>
+
+    <section class="categories">
+      <div class="category">
+        <div class="emoji">🃏</div>
+        <h3>Carte TCG</h3>
+        <p>Carte, bustine e accessori.</p>
+      </div>
+      <div class="category">
+        <div class="emoji">📚</div>
+        <h3>Manga</h3>
+        <p>Le tue serie preferite.</p>
+      </div>
+      <div class="category">
+        <div class="emoji">🤖</div>
+        <h3>Action figure</h3>
+        <p>Personaggi da collezione.</p>
+      </div>
+      <div class="category">
+        <div class="emoji">✨</div>
+        <h3>Gadget</h3>
+        <p>Idee regalo e merchandising.</p>
+      </div>
+    </section>
+
+    <section class="info">
+      <h2>Il negozio</h2>
+      <p>
+        Siamo un punto di riferimento per chi ama il mondo
+        TCG, manga e collezionismo. Vieni a trovarci
+        oppure contattaci per informazioni.
+      </p>
+    </section>
+
+    <section class="info" id="contatti">
+      <h2>Contatti e informazioni</h2>
+      <p><strong>Indirizzo:</strong> Via G. Matteotti nr.16 A-B, Carcare, SV</p>
+      <p><strong>Orari:</strong> Lunedì dalle 15:00 alle 19:00, da Martedì a Sabato delle 9:00 alle 12:00 e dalle 15:00 alle 19:00. Domenica chiuso.</p>
+      <p><strong>Telefono:</strong> 3791654906</p>
+
+      <a class="button"
+         href="https://wa.me/3791654906"
+         target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+
+      <p>
+        <a href="https://www.instagram.com/TUOPROFILO/"
+           target="_blank" rel="noopener">https://www.instagram.com/locastcollector?cplk=b2Y5YXI6MHBnMjdm</a>
+        ·
+        <a href="https://www.facebook.com/share/19VaRZnYCs/"
+           target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </section>
+
+    <section class="info" style="text-align:center">
+      <h2>Il nostro e-commerce è in arrivo!</h2>
+      <p>
+        Stiamo preparando il nostro negozio online.
+        Nel frattempo, seguici sui social per le novità.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> NOME DEL NEGOZIO</p>
+    <p>Partita IVA: INSERISCI SE APPLICABILE</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
