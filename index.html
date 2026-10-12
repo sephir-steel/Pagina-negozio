@@ -1,533 +1,318 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta name="description" content="Lo-Cast Collector a Carcare: carte TCG, manga, action figure e gadget. Vieni a trovarci!">
-
-  <meta name="theme-color" content="#100d19">
-
-  <title>Lo-Cast Collector | TCG, Manga, Action Figure e Gadget</title>
-
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Lo-Cast Collector a Carcare: carte TCG, manga, action figure e gadget. Scopri il negozio e seguici per tutte le novità.">
+  <title>Lo-Cast Collector | Il tuo mondo nerd, a Carcare</title>
   <style>
     :root {
-      --bg: #100d19;
-      --card: #1c1729;
-      --purple: #a78bfa;
-      --white: #f8f6ff;
-      --muted: #c4bdd5;
-      --border: #383047;
+      color-scheme: dark;
+      --bg: #0c0c0e;
+      --bg-soft: #141416;
+      --panel: #19191c;
+      --panel-light: #202024;
+      --gold: #f3c66a;
+      --orange: #f07832;
+      --cream: #fff8eb;
+      --muted: #c2bdb4;
+      --line: rgba(243, 198, 106, .23);
+      --radius: 20px;
+      --max: 1080px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: var(--white);
-      background: var(--bg);
-      line-height: 1.6;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% -15%, rgba(240,120,50,.15), transparent 42rem),
+        var(--bg);
+      line-height: 1.65;
     }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin-inline: auto; }
 
+    .topline {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--orange), var(--gold), var(--orange), transparent);
+    }
     header {
-      padding: 28px 18px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      background: #151020;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(12,12,14,.82);
     }
-
-    header h1 {
-      margin: 0;
-      color: var(--purple);
-      font-size: clamp(27px, 5vw, 40px);
-      letter-spacing: 0.5px;
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
     }
-
-    header p {
-      margin: 5px 0 0;
-      color: var(--muted);
+    .brand {
+      display: inline-flex; align-items: center; gap: 12px;
+      text-decoration: none; min-width: 0;
     }
-
-    main {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      padding: 30px 18px 45px;
+    .brand-mark {
+      display: grid; place-items: center; flex: 0 0 44px; height: 44px;
+      border: 1px solid var(--line); border-radius: 13px;
+      background: linear-gradient(145deg, rgba(243,198,106,.16), rgba(240,120,50,.08));
+      color: var(--gold); font-size: 23px;
+      box-shadow: inset 0 0 22px rgba(240,120,50,.06);
     }
+    .brand-name { font-weight: 900; letter-spacing: .055em; text-transform: uppercase; line-height: 1.15; }
+    .brand-name span { color: var(--gold); }
+    .brand-sub { display: block; margin-top: 4px; font-size: 11px; letter-spacing: .16em; color: var(--muted); font-weight: 600; }
+    .nav-link {
+      text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 700;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--gold); }
 
     .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      padding: clamp(68px, 10vw, 118px) 0 76px;
       text-align: center;
-      padding: 45px 10px;
     }
-
-    .hero h2 {
-      font-size: clamp(30px, 6vw, 46px);
-      line-height: 1.15;
-      margin: 0 0 18px;
+    .hero::before, .hero::after {
+      content: ""; position: absolute; z-index: -1; pointer-events: none;
+      width: min(66vw, 570px); aspect-ratio: 1; border-radius: 50%;
+      border: 1px solid rgba(243,198,106,.12);
+      left: 50%; top: 48%; transform: translate(-50%,-50%);
     }
-
-    .hero p {
-      color: var(--muted);
-      max-width: 590px;
-      margin: 0 auto 25px;
-      font-size: 17px;
+    .hero::after { width: min(52vw, 440px); border-color: rgba(240,120,50,.13); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px;
+      color: var(--gold); background: rgba(243,198,106,.055);
+      text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800;
     }
-
-    .button {
-      display: inline-block;
-      background: var(--purple);
-      color: #160e24;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 12px 22px;
-      margin: 5px;
-      border-radius: 8px;
-      transition: background 0.2s, transform 0.2s;
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 13px var(--orange); }
+    h1 {
+      max-width: 850px; margin: 24px auto 18px;
+      font-size: clamp(42px, 8vw, 82px); line-height: .99;
+      letter-spacing: -.055em; font-weight: 950;
     }
-
-    .button:hover {
-      background: #c4b5fd;
-      transform: translateY(-2px);
+    h1 .accent {
+      color: var(--gold);
+      background: linear-gradient(100deg, #fff0bd 5%, var(--gold) 45%, var(--orange) 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    .button.secondary {
-      color: var(--white);
-      background: var(--card);
-      border: 1px solid #55436f;
+    .hero-copy { max-width: 650px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 48px; padding: 12px 20px; border-radius: 12px;
+      border: 1px solid transparent; text-decoration: none; font-weight: 800; font-size: 14px;
+      transition: transform .2s, background .2s, border-color .2s;
     }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #1a1207; background: linear-gradient(110deg, var(--gold), #f5a84f); box-shadow: 0 8px 28px rgba(240,120,50,.15); }
+    .btn-primary:hover { background: linear-gradient(110deg, #ffe39a, var(--gold)); }
+    .btn-secondary { color: var(--cream); background: rgba(255,255,255,.035); border-color: rgba(255,255,255,.14); }
+    .btn-secondary:hover { border-color: var(--gold); background: rgba(243,198,106,.07); }
+    .hero-note { margin-top: 22px; color: #938b80; font-size: 12px; letter-spacing: .04em; }
 
-    .button.secondary:hover {
-      background: #30243f;
-    }
-
-    .section-title {
-      text-align: center;
-      margin: 25px 0;
-      font-size: 27px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 15px;
-      margin: 25px 0 40px;
-    }
-
+    .section { padding: 36px 0 48px; }
+    .section-head { text-align: center; margin: 0 auto 27px; max-width: 650px; }
+    .section-kicker { margin: 0 0 7px; color: var(--orange); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; font-weight: 900; }
+    h2 { margin: 0; font-size: clamp(27px, 4vw, 38px); line-height: 1.15; letter-spacing: -.035em; }
+    .section-intro { margin: 12px 0 0; color: var(--muted); }
+    .categories { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
     .category {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px 14px;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
+      min-height: 180px; padding: 24px 18px; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.085);
+      background: linear-gradient(155deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      transition: transform .2s, border-color .2s, background .2s;
     }
-
-    .category:hover {
-      border-color: var(--purple);
-      transform: translateY(-3px);
-    }
-
-    .category .emoji {
-      font-size: 34px;
-    }
-
-    .category h3 {
-      margin: 8px 0 4px;
-    }
-
-    .category p {
-      color: var(--muted);
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .info {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 26px;
-      margin-top: 20px;
-    }
-
-    .info h2 {
-      color: var(--purple);
-      margin: 0 0 14px;
+    .category:hover { transform: translateY(-4px); border-color: var(--line); background: linear-gradient(155deg, rgba(243,198,106,.09), rgba(255,255,255,.015)); }
+    .category-icon {
+      display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 17px;
+      border-radius: 14px; border: 1px solid var(--line); background: rgba(243,198,106,.07);
       font-size: 24px;
     }
+    .category h3 { margin: 0 0 6px; font-size: 17px; }
+    .category p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
 
-    .info p {
-      color: var(--muted);
+    .community {
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch;
+      margin-top: 16px;
     }
-
-    /* ORARI DI APERTURA */
-
-    .hours {
-      max-width: 460px;
-      margin: 24px auto 8px;
-      padding: 18px 22px;
-      background: #151020;
-      border: 1px solid var(--border);
-      border-radius: 12px;
+    .feature, .contact-panel {
+      padding: clamp(23px, 4vw, 34px); border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.09); background: var(--panel);
     }
-
-    .hours-title {
-      text-align: center;
-      color: var(--purple);
-      font-size: 19px;
-      margin: 0 0 14px;
+    .feature { position: relative; overflow: hidden; }
+    .feature::after {
+      content: "✦"; position: absolute; right: 22px; bottom: -36px; font-size: 150px;
+      color: rgba(243,198,106,.045); pointer-events: none;
     }
+    .feature h2 { font-size: clamp(25px, 3vw, 34px); }
+    .feature p, .contact-panel p { color: var(--muted); }
+    .mini-label { color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .contact-panel h2 { font-size: 25px; }
+    .contact-list { list-style: none; padding: 0; margin: 19px 0 0; }
+    .contact-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.075); }
+    .contact-list li:last-child { border-bottom: 0; }
+    .contact-list strong { display: block; color: var(--cream); font-size: 13px; }
+    .contact-list span, .contact-list a { color: var(--muted); font-size: 14px; }
+    .contact-list a:hover { color: var(--gold); }
+    .hours { margin-top: 17px; padding: 16px; border-radius: 14px; background: #111113; border: 1px solid rgba(255,255,255,.07); }
+    .hours h3 { margin: 0 0 10px; color: var(--gold); font-size: 15px; }
+    .hours-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 13px; }
+    .hours-row:last-child { border-bottom: 0; }
+    .hours-row span:first-child { color: var(--cream); font-weight: 650; }
+    .hours-row span:last-child { color: var(--muted); text-align: right; }
+    .hours-row .closed { color: #eaa06b !important; }
 
-    .hours-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
+    .coming {
+      position: relative; overflow: hidden; text-align: center; padding: 36px 22px;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: radial-gradient(ellipse at 50% 0%, rgba(240,120,50,.12), transparent 65%), var(--bg-soft);
     }
+    .coming h2 { margin-top: 10px; }
+    .coming p { max-width: 570px; margin: 12px auto 0; color: var(--muted); }
+    .coming .actions { margin-top: 22px; }
 
-    .hours-row:last-child {
-      border-bottom: none;
+    footer { margin-top: 24px; border-top: 1px solid rgba(255,255,255,.08); padding: 25px 0 32px; color: #8f887f; font-size: 12px; text-align: center; }
+    footer p { margin: 5px 0; }
+    .footer-brand { color: var(--gold); font-weight: 800; letter-spacing: .08em; }
+
+    @media (max-width: 800px) {
+      .categories { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .community { grid-template-columns: 1fr; }
     }
-
-    .hours-day {
-      color: var(--white);
-      font-weight: 600;
-    }
-
-    .hours-time {
-      text-align: right;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .hours-group {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hours-group .hours-day {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .hours-period {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 4px 0 4px 12px;
-      color: var(--muted);
-    }
-
-    .hours-period-label {
-      font-size: 14px;
-    }
-
-    .hours-period time {
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
-    }
-
-    .closed {
-      color: #d6c5ff;
-    }
-
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin: 18px 0;
-    }
-
-    .social-links {
-      text-align: center;
-      margin-top: 18px;
-    }
-
-    .social-links a {
-      color: var(--purple);
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .social-links a:hover {
-      text-decoration: underline;
-    }
-
-    .coming-soon {
-      text-align: center;
-      border-color: #55436f;
-      padding: 30px 22px;
-    }
-
-    .coming-soon h2 {
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 15px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    a {
-      overflow-wrap: anywhere;
-    }
-
     @media (max-width: 480px) {
-      main {
-        padding: 20px 14px 35px;
-      }
-
-      .hero {
-        padding: 30px 5px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .categories {
-        gap: 10px;
-      }
-
-      .category {
-        padding: 20px 8px;
-      }
-
-      .info {
-        padding: 20px 15px;
-      }
-
-      .hours {
-        padding: 15px 12px;
-      }
-
-      .hours-row {
-        gap: 8px;
-      }
-
-      .hours-time,
-      .hours-period time {
-        font-size: 14px;
-      }
-
-      .button {
-        padding: 11px 16px;
-      }
+      .wrap { width: min(var(--max), calc(100% - 26px)); }
+      header { padding: 16px 0; }
+      .brand-mark { width: 39px; height: 39px; flex-basis: 39px; }
+      .brand-name { font-size: 13px; }
+      .brand-sub { font-size: 9px; }
+      .nav-link { font-size: 12px; }
+      .hero { padding: 64px 0 55px; }
+      .categories { gap: 10px; }
+      .category { padding: 18px 14px; min-height: 165px; }
+      .category h3 { font-size: 15px; }
+      .category p { font-size: 12px; }
+      .btn { width: 100%; }
+      .actions { gap: 9px; }
+      .hours-row { font-size: 12px; }
     }
-
-    @media (max-width: 350px) {
-      .hours {
-        padding: 12px 8px;
-      }
-
-      .hours-row {
-        gap: 5px;
-      }
-
-      .hours-time,
-      .hours-period time {
-        font-size: 13px;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
   </style>
 </head>
-
 <body>
-
+  <div class="topline" aria-hidden="true"></div>
   <header>
-    <h1>Lo-Cast Collector</h1>
-    <p>Il tuo mondo nerd, a Carcare!</p>
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="Lo-Cast Collector, pagina iniziale">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-name">LO-CAST <span>COLLECTOR</span><span class="brand-sub">CARCARE · LIGURIA</span></span>
+      </a>
+      <a class="nav-link" href="#contatti">Dove siamo ↗</a>
+    </div>
   </header>
 
   <main>
-
-    <section class="hero">
-      <h2>La tua prossima passione ti aspetta.</h2>
-
-      <p>
-        Carte collezionabili, manga, action figure e gadget:
-        scopri il nostro mondo dedicato agli appassionati
-        di anime, fumetti e giochi di carte.
-      </p>
-
-      <a class="button" href="#contatti">Contattaci</a>
-
-      <a
-        class="button secondary"
-        href="https://www.instagram.com/locastcollector/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Seguici su Instagram
-      </a>
+    <section class="hero wrap">
+      <span class="eyebrow">Il mondo del collezionismo</span>
+      <h1>La tua prossima<br><span class="accent">passione ti aspetta.</span></h1>
+      <p class="hero-copy">Carte collezionabili, manga, action figure e gadget: uno spazio dedicato a chi ama giocare, collezionare e condividere le proprie passioni.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contatti">Scopri il negozio <span aria-hidden="true">↘</span></a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/locastcollector/" target="_blank" rel="noopener noreferrer">Seguici su Instagram ↗</a>
+      </div>
+      <p class="hero-note">LO-CAST COLLECTOR · CARCARE (SV)</p>
     </section>
 
-    <h2 class="section-title">Cosa trovi in negozio</h2>
-
-    <section class="categories">
-
-      <div class="category">
-        <div class="emoji" aria-hidden="true">🃏</div>
-        <h3>Carte TCG</h3>
-        <p>Carte, bustine e accessori.</p>
+    <section class="section wrap" aria-labelledby="categorie-title">
+      <div class="section-head">
+        <p class="section-kicker">Le tue passioni, tutte qui</p>
+        <h2 id="categorie-title">Entra nel nostro universo</h2>
+        <p class="section-intro">Dalle carte da gioco ai personaggi da collezione, c'è sempre qualcosa di nuovo da scoprire.</p>
       </div>
-
-      <div class="category">
-        <div class="emoji" aria-hidden="true">📚</div>
-        <h3>Manga</h3>
-        <p>Le tue serie preferite.</p>
+      <div class="categories">
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">🃏</div>
+          <h3>Carte TCG</h3>
+          <p>Pokémon, Magic e altri giochi di carte collezionabili.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">📚</div>
+          <h3>Manga e fumetti</h3>
+          <p>Storie, personaggi e nuove serie da seguire.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">🤖</div>
+          <h3>Action figure</h3>
+          <p>Personaggi iconici da esporre e collezionare.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">✨</div>
+          <h3>Gadget e collectibles</h3>
+          <p>Merchandising e idee per arricchire la tua collezione.</p>
+        </article>
       </div>
-
-      <div class="category">
-        <div class="emoji" aria-hidden="true">🤖</div>
-        <h3>Action figure</h3>
-        <p>Personaggi da collezione.</p>
-      </div>
-
-      <div class="category">
-        <div class="emoji" aria-hidden="true">✨</div>
-        <h3>Gadget</h3>
-        <p>Idee regalo e merchandising.</p>
-      </div>
-
     </section>
 
-    <section class="info">
-      <h2>Il negozio</h2>
+    <section class="section wrap">
+      <div class="community">
+        <article class="feature">
+          <p class="mini-label">Molto più di un negozio</p>
+          <h2>Una community da vivere.</h2>
+          <p>Lo-Cast Collector nasce per riunire appassionati, giocatori e collezionisti. Passa a trovarci, scopri i prodotti e resta aggiornato su novità, iniziative e appuntamenti in negozio.</p>
+          <a class="btn btn-secondary" href="https://www.facebook.com/share/19VaRZnYCs/" target="_blank" rel="noopener noreferrer">Seguici su Facebook ↗</a>
+        </article>
 
-      <p>
-        Siamo un punto di riferimento per chi ama il mondo
-        TCG, manga e collezionismo. Vieni a trovarci
-        oppure contattaci per informazioni.
-      </p>
-    </section>
-
-    <section class="info" id="contatti">
-
-      <h2>Contatti e informazioni</h2>
-
-      <p>
-        <strong>Indirizzo:</strong><br>
-        Via G. Matteotti 16 A-B, Carcare (SV)
-      </p>
-
-      <div class="hours">
-
-        <h3 class="hours-title">Orari di apertura</h3>
-
-        <div class="hours-row">
-          <span class="hours-day">Lunedì</span>
-          <span class="hours-time">15:00 – 19:00</span>
-        </div>
-
-        <div class="hours-group">
-          <span class="hours-day">Martedì – Sabato</span>
-
-          <div class="hours-period">
-            <span class="hours-period-label">Mattina</span>
-            <time>09:00 – 12:00</time>
+        <section class="contact-panel" id="contatti" aria-labelledby="contatti-title">
+          <p class="mini-label">Vieni a trovarci</p>
+          <h2 id="contatti-title">Ci trovi a Carcare</h2>
+          <ul class="contact-list">
+            <li><strong>Indirizzo</strong><span>Via G. Matteotti 16 A-B, Carcare (SV)</span></li>
+            <li><strong>Telefono</strong><a href="tel:+393791654906">379 165 4906</a></li>
+          </ul>
+          <div class="hours">
+            <h3>Orari di apertura</h3>
+            <div class="hours-row"><span>Lunedì</span><span>15:00 – 19:00</span></div>
+            <div class="hours-row"><span>Martedì – Sabato</span><span>09:00 – 12:00</span></div>
+            <div class="hours-row"><span>Martedì – Sabato</span><span>15:00 – 19:00</span></div>
+            <div class="hours-row"><span>Domenica</span><span class="closed">Chiuso</span></div>
           </div>
-
-          <div class="hours-period">
-            <span class="hours-period-label">Pomeriggio</span>
-            <time>15:00 – 19:00</time>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/393791654906" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp ↗</a>
+            <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Via+G.+Matteotti+16+A-B+Carcare+SV" target="_blank" rel="noopener noreferrer">Indicazioni stradali ↗</a>
           </div>
-        </div>
-
-        <div class="hours-row">
-          <span class="hours-day">Domenica</span>
-          <span class="hours-time closed">Chiuso</span>
-        </div>
-
+        </section>
       </div>
-
-      <p>
-        <strong>Telefono:</strong>
-        <a href="tel:+393791654906">379 165 4906</a>
-      </p>
-
-      <div class="contact-buttons">
-
-        <a
-          class="button"
-          href="https://wa.me/393791654906"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Scrivici su WhatsApp
-        </a>
-
-        <a
-          class="button secondary"
-          href="https://www.google.com/maps/search/?api=1&query=Via+G.+Matteotti+16+A-B+Carcare+SV"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Come raggiungerci
-        </a>
-
-      </div>
-
-      <div class="social-links">
-        <a
-          href="https://www.instagram.com/locastcollector/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Instagram</a>
-
-        &nbsp; · &nbsp;
-
-        <a
-          href="https://www.facebook.com/share/19VaRZnYCs/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Facebook</a>
-      </div>
-
     </section>
 
-    <section class="info coming-soon">
-      <h2>Il nostro e-commerce è in arrivo!</h2>
-
-      <p>
-        Stiamo preparando il nostro negozio online.
-        Nel frattempo, seguici sui social per scoprire
-        novità, prodotti e aggiornamenti.
-      </p>
+    <section class="section wrap">
+      <div class="coming">
+        <p class="section-kicker">Stiamo preparando qualcosa di speciale</p>
+        <h2>Il nostro e-commerce è in lavorazione.</h2>
+        <p>Presto potrai scoprire anche online il mondo Lo-Cast Collector. Nel frattempo, seguici sui social per non perderti novità, prodotti e aggiornamenti.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.instagram.com/locastcollector/" target="_blank" rel="noopener noreferrer">Resta aggiornato su Instagram ↗</a>
+          <a class="btn btn-secondary" href="https://www.facebook.com/share/19VaRZnYCs/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+        </div>
+      </div>
     </section>
-
   </main>
 
   <footer>
-    <p>
-      © <span id="year"></span> Lo-Cast Collector Snc
-    </p>
-    <p>Partita IVA: INSERISCI LA PARTITA IVA</p>
+    <div class="wrap">
+      <p class="footer-brand">LO-CAST COLLECTOR SNC</p>
+      <p>Carcare (SV) · Carte TCG, manga, action figure e collezionismo</p>
+      <p>© <span id="year"></span> Lo-Cast Collector. Tutti i diritti riservati.</p>
+      <!-- Inserisci qui la Partita IVA corretta e gli eventuali dati societari richiesti. -->
+    </div>
   </footer>
 
   <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
