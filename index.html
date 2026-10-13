@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Lo-Cast Collector a Carcare: carte TCG, manga, action figure e gadget. Scopri il negozio e seguici per tutte le novità.">
+  <title>Lo-Cast Collector | Il tuo mondo nerd, a Carcare</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c0c0e;
+      --bg-soft: #141416;
+      --panel: #19191c;
+      --panel-light: #202024;
+      --gold: #f3c66a;
+      --orange: #f07832;
+      --cream: #fff8eb;
+      --muted: #c2bdb4;
+      --line: rgba(243, 198, 106, .23);
+      --radius: 20px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% -15%, rgba(240,120,50,.15), transparent 42rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin-inline: auto; }
+
+    .topline {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--orange), var(--gold), var(--orange), transparent);
+    }
+    header {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(12,12,14,.82);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    .nav-link {
+      text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 700;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    /* Stile per il logo centrale a inizio pagina */
+    .brand-center {
+      text-align: center;
+      padding: 28px 0 10px;
+    }
+    .brand-center .brand-logo {
+      width: min(150px, 40vw);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 18px rgba(240, 120, 50, 0.45));
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .brand-center .brand-name {
+      display: block;
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 950;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .brand-center .brand-name span { color: var(--gold); }
+    .brand-center .brand-sub {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      letter-spacing: .2em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      padding: clamp(30px, 5vw, 60px) 0 76px;
+      text-align: center;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; z-index: -1; pointer-events: none;
+      width: min(66vw, 570px); aspect-ratio: 1; border-radius: 50%;
+      border: 1px solid rgba(243,198,106,.12);
+      left: 50%; top: 48%; transform: translate(-50%,-50%);
+    }
+    .hero::after { width: min(52vw, 440px); border-color: rgba(240,120,50,.13); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px;
+      color: var(--gold); background: rgba(243,198,106,.055);
+      text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800;
+    }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 13px var(--orange); }
+    h1 {
+      max-width: 850px; margin: 24px auto 18px;
+      font-size: clamp(38px, 7vw, 74px); line-height: .99;
+      letter-spacing: -.055em; font-weight: 950;
+    }
+    h1 .accent {
+      color: var(--gold);
+      background: linear-gradient(100deg, #fff0bd 5%, var(--gold) 45%, var(--orange) 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-copy { max-width: 650px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 48px; padding: 12px 20px; border-radius: 12px;
+      border: 1px solid transparent; text-decoration: none; font-weight: 800; font-size: 14px;
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #1a1207; background: linear-gradient(110deg, var(--gold), #f5a84f); box-shadow: 0 8px 28px rgba(240,120,50,.15); }
+    .btn-primary:hover { background: linear-gradient(110deg, #ffe39a, var(--gold)); }
+    .btn-secondary { color: var(--cream); background: rgba(255,255,255,.035); border-color: rgba(255,255,255,.14); }
+    .btn-secondary:hover { border-color: var(--gold); background: rgba(243,198,106,.07); }
+    .hero-note { margin-top: 22px; color: #938b80; font-size: 12px; letter-spacing: .04em; }
+
+    .section { padding: 36px 0 48px; }
+    .section-head { text-align: center; margin: 0 auto 27px; max-width: 650px; }
+    .section-kicker { margin: 0 0 7px; color: var(--orange); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; font-weight: 900; }
+    h2 { margin: 0; font-size: clamp(27px, 4vw, 38px); line-height: 1.15; letter-spacing: -.035em; }
+    .section-intro { margin: 12px 0 0; color: var(--muted); }
+    .categories { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; }
+    .category {
+      min-height: 180px; padding: 24px 18px; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.085);
+      background: linear-gradient(155deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+    .category:hover { transform: translateY(-4px); border-color: var(--line); background: linear-gradient(155deg, rgba(243,198,106,.09), rgba(255,255,255,.015)); }
+    .category-icon {
+      display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 17px;
+      border-radius: 14px; border: 1px solid var(--line); background: rgba(243,198,106,.07);
+      font-size: 24px;
+    }
+    .category h3 { margin: 0 0 6px; font-size: 17px; }
+    .category p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    .community {
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch;
+      margin-top: 16px;
+    }
+    .feature, .contact-panel {
+      padding: clamp(23px, 4vw, 34px); border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.09); background: var(--panel);
+    }
+    .feature { position: relative; overflow: hidden; }
+    .feature::after {
+      content: "✦"; position: absolute; right: 22px; bottom: -36px; font-size: 150px;
+      color: rgba(243,198,106,.045); pointer-events: none;
+    }
+    .feature h2 { font-size: clamp(25px, 3vw, 34px); }
+    .feature p, .contact-panel p { color: var(--muted); }
+    .mini-label { color: var(--gold); font-size: 11px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .contact-panel h2 { font-size: 25px; }
+    .contact-list { list-style: none; padding: 0; margin: 19px 0 0; }
+    .contact-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.075); }
+    .contact-list li:last-child { border-bottom: 0; }
+    .contact-list strong { display: block; color: var(--cream); font-size: 13px; }
+    .contact-list span, .contact-list a { color: var(--muted); font-size: 14px; }
+    .contact-list a:hover { color: var(--gold); }
+    .hours { margin-top: 17px; padding: 16px; border-radius: 14px; background: #111113; border: 1px solid rgba(255,255,255,.07); }
+    .hours h3 { margin: 0 0 10px; color: var(--gold); font-size: 15px; }
+    .hours-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 13px; }
+    .hours-row:last-child { border-bottom: 0; }
+    .hours-row span:first-child { color: var(--cream); font-weight: 650; }
+    .hours-row span:last-child { color: var(--muted); text-align: right; }
+    .hours-row .closed { color: #eaa06b !important; }
+
+    .coming {
+      position: relative; overflow: hidden; text-align: center; padding: 36px 22px;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: radial-gradient(ellipse at 50% 0%, rgba(240,120,50,.12), transparent 65%), var(--bg-soft);
+    }
+    .coming h2 { margin-top: 10px; }
+    .coming p { max-width: 570px; margin: 12px auto 0; color: var(--muted); }
+    .coming .actions { margin-top: 22px; }
+
+    footer { margin-top: 24px; border-top: 1px solid rgba(255,255,255,.08); padding: 25px 0 32px; color: #8f887f; font-size: 12px; text-align: center; }
+    footer p { margin: 5px 0; }
+    .footer-brand { color: var(--gold); font-weight: 800; letter-spacing: .08em; }
+
+    @media (max-width: 800px) {
+      .categories { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .community { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .wrap { width: min(var(--max), calc(100% - 26px)); }
+      .brand-center .brand-logo { width: 120px; }
+      .hours-row { font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline" aria-hidden="true"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="nav-link" href="#contatti">Dove siamo ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <!-- Logo centrale a inizio pagina (formato .png) -->
+      <div class="brand-center">
+        <img class="brand-logo" src="logo-removebg-preview.png" alt="Lo-Cast Collector Logo">
+        <span class="brand-name">LO-CAST <span>COLLECTOR</span></span>
+        <span class="brand-sub">CARCARE · LIGURIA</span>
+      </div>
+
+      <span class="eyebrow" style="margin-top: 15px;">Il mondo del collezionismo</span>
+      <h1>La tua prossima<br><span class="accent">passione ti aspetta.</span></h1>
+      <p class="hero-copy">Carte collezionabili, manga, action figure e gadget: uno spazio dedicato a chi ama giocare, collezionare e condividere le proprie passioni.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contatti">Scopri il negozio <span aria-hidden="true">↘</span></a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/locastcollector/" target="_blank" rel="noopener noreferrer">Seguici su Instagram ↗</a>
+      </div>
+      <p class="hero-note">LO-CAST COLLECTOR · CARCARE (SV)</p>
+    </section>
+
+    <section class="section wrap" aria-labelledby="categorie-title">
+      <div class="section-head">
+        <p class="section-kicker">Le tue passioni, tutte qui</p>
+        <h2 id="categorie-title">Entra nel nostro universo</h2>
+        <p class="section-intro">Dalle carte da gioco ai personaggi da collezione, c'è sempre qualcosa di nuovo da scoprire.</p>
+      </div>
+      <div class="categories">
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">🃏</div>
+          <h3>Carte TCG</h3>
+          <p>Pokémon, Magic e altri giochi di carte collezionabili.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">📚</div>
+          <h3>Manga e fumetti</h3>
+          <p>Storie, personaggi e nuove serie da seguire.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">🤖</div>
+          <h3>Action figure</h3>
+          <p>Personaggi iconici da esporre e collezionare.</p>
+        </article>
+        <article class="category">
+          <div class="category-icon" aria-hidden="true">✨</div>
+          <h3>Gadget e collectibles</h3>
+          <p>Merchandising e idee per arricchire la tua collezione.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="community">
+        <article class="feature">
+          <p class="mini-label">Molto più di un negozio</p>
+          <h2>Una community da vivere.</h2>
+          <p>Lo-Cast Collector nasce per riunire appassionati, giocatori e collezionisti. Passa a trovarci, scopri i prodotti e resta aggiornato su novità, iniziative e appuntamenti in negozio.</p>
+          <a class="btn btn-secondary" href="https://www.facebook.com/share/19VaRZnYCs/" target="_blank" rel="noopener noreferrer">Seguici su Facebook ↗</a>
+        </article>
+
+        <section class="contact-panel" id="contatti" aria-labelledby="contatti-title">
+          <p class="mini-label">Vieni a trovarci</p>
+          <h2 id="contatti-title">Ci trovi a Carcare</h2>
+          <ul class="contact-list">
+            <li><strong>Indirizzo</strong><span>Via G. Matteotti 16 A-B, Carcare (SV)</span></li>
+            <li><strong>Telefono</strong><a href="tel:+393791654906">379 165 4906</a></li>
+          </ul>
+          <div class="hours">
+            <h3>Orari di apertura</h3>
+            <div class="hours-row"><span>Lunedì</span><span>15:00 – 19:00</span></div>
+            <div class="hours-row"><span>Martedì – Sabato</span><span>09:00 – 12:00</span></div>
+            <div class="hours-row"><span>Martedì – Sabato</span><span>15:00 – 19:00</span></div>
+            <div class="hours-row"><span>Domenica</span><span class="closed">Chiuso</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/393791654906" target="_blank" rel="noopener noreferrer">Scrivici su WhatsApp ↗</a>
+            <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Via+G.+Matteotti+16+A-B+Carcare+SV" target="_blank" rel="noopener noreferrer">Indicazioni stradali ↗</a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="coming">
+        <p class="section-kicker">Stiamo preparando qualcosa di speciale</p>
+        <h2>Il nostro e-commerce è in lavorazione.</h2>
+        <p>Presto potrai scoprire anche online il mondo Lo-Cast Collector. Nel frattempo, seguici sui social per non perderti novità, prodotti e aggiornamenti.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.instagram.com/locastcollector/" target="_blank" rel="noopener noreferrer">Resta aggiornato su Instagram ↗</a>
+          <a class="btn btn-secondary" href="https://www.facebook.com/share/19VaRZnYCs/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="footer-brand">LO-CAST COLLECTOR SNC</p>
+      <p>Carcare (SV) · Carte TCG, manga, action figure e collezionismo</p>
+      <p>© <span id="year"></span> Lo-Cast Collector. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
