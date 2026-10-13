@@ -62,7 +62,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
+      margin: 0 auto 10px;
       max-width: 650px;
     }
     .brand-hero-logo {
@@ -79,14 +79,14 @@
       width: 100%;
       max-width: 580px;
       height: auto;
-      margin-top: -150px; /* Fa salire l'arco per abbracciare la parte inferiore del logo */
+      margin-top: -80px; /* Posizionamento bilanciato sotto il logo */
       z-index: 2;
       pointer-events: none;
     }
     .curved-heading-text {
       font-family: Inter, "Segoe UI", Arial, sans-serif;
       font-weight: 950;
-      font-size: 26px;
+      font-size: 25px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       fill: url(#goldGradient);
@@ -104,15 +104,8 @@
       left: 50%; top: 48%; transform: translate(-50%,-50%);
     }
     .hero::after { width: min(52vw, 440px); border-color: rgba(240,120,50,.13); }
-    <!-- .eyebrow {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px;
-      color: var(--gold); background: rgba(243,198,106,.055);
-      text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800;
-    } -->
     
-    
-    .hero-copy { max-width: 650px; margin: 50px auto 0; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
+    .hero-copy { max-width: 650px; margin: 25px auto 0; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
     .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 30px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -199,8 +192,8 @@
     @media (max-width: 480px) {
       .wrap { width: min(var(--max), calc(100% - 26px)); }
       .brand-hero-logo { max-width: 240px; }
-      .curved-heading-svg { margin-top: -45px; }
-      .curved-heading-text { font-size: 22px; }
+      .curved-heading-svg { margin-top: -55px; }
+      .curved-heading-text { font-size: 21px; }
       .hours-row { font-size: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -224,7 +217,7 @@
         <img class="brand-hero-logo" src="logo-removebg-preview.png" alt="Lo-Cast Collector Logo">
         
         <!-- SVG per il testo curvo ad arco/U -->
-        <svg class="curved-heading-svg" viewBox="0 0 600 160" aria-label="La tua prossima passione ti aspetta">
+        <svg class="curved-heading-svg" viewBox="0 0 600 200" aria-label="La tua prossima passione ti aspetta.">
           <defs>
             <!-- Gradiente dorato/arancione per il testo -->
             <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -233,7 +226,8 @@
               <stop offset="100%" stop-color="#f07832" />
             </linearGradient>
             <!-- Tracciato dell'arco curvo verso il basso ad U -->
-          <path id="curvePath" d="M 0,25 A 300,150 0 0,0 600,25" fill="transparent" />          </defs>
+            <path id="curvePath" d="M 0,25 A 300,150 0 0,0 600,25" fill="transparent" />
+          </defs>
           <text class="curved-heading-text">
             <textPath href="#curvePath" startOffset="50%" text-anchor="middle">
               LA TUA PROSSIMA PASSIONE TI ASPETTA.
@@ -242,9 +236,7 @@
         </svg>
       </div>
 
-      <!-- <span class="eyebrow">Il mondo del collezionismo</span> -->
-      
-      <p class="hero-copy" style="margin-top: 80px;">Carte collezionabili, manga, action figure e gadget: uno spazio dedicato a chi ama giocare, collezionare e condividere le proprie passioni.</p>
+      <p class="hero-copy">Carte collezionabili, manga, action figure e gadget: uno spazio dedicato a chi ama giocare, collezionare e condividere le proprie passioni.</p>
 
       <div class="actions">
         <a class="btn btn-primary" href="#contatti">Scopri il negozio <span aria-hidden="true">↘</span></a>
