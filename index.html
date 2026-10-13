@@ -55,40 +55,46 @@
     }
     .nav-link:hover { color: var(--gold); }
 
-    /* Stile per il logo centrale a inizio pagina */
-    .brand-center {
-      text-align: center;
-      padding: 28px 0 10px;
+    /* Struttura Logo + Testo ad U */
+    .brand-hero-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      max-width: 650px;
     }
-    .brand-center .brand-logo {
-      width: min(540px, 380vw);
+    .brand-hero-logo {
+      width: 100%;
+      max-width: 320px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(240, 120, 50, 0.45));
-      margin-bottom: 14px;
-      display: inline-block;
+      filter: drop-shadow(0 10px 25px rgba(240, 120, 50, 0.35));
+      z-index: 1;
     }
-    .brand-center .brand-name {
-      display: block;
-      font-size: clamp(24px, 5vw, 36px);
+
+    /* Testo curvo ad U in SVG */
+    .curved-heading-svg {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      margin-top: -60px; /* Fa salire l'arco per abbracciare la parte inferiore del logo */
+      z-index: 2;
+      pointer-events: none;
+    }
+    .curved-heading-text {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
       font-weight: 950;
-      letter-spacing: .06em;
+      font-size: 26px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .brand-center .brand-name span { color: var(--gold); }
-    .brand-center .brand-sub {
-      display: block;
-      margin-top: 6px;
-      font-size: 12px;
-      letter-spacing: .2em;
-      color: var(--muted);
-      font-weight: 700;
+      fill: url(#goldGradient);
     }
 
     .hero {
       position: relative; isolation: isolate; overflow: hidden;
-      padding: clamp(30px, 5vw, 60px) 0 76px;
+      padding: clamp(20px, 4vw, 50px) 0 76px;
       text-align: center;
     }
     .hero::before, .hero::after {
@@ -105,17 +111,7 @@
       text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800;
     }
     .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 13px var(--orange); }
-    h1 {
-      max-width: 850px; margin: 24px auto 18px;
-      font-size: clamp(38px, 7vw, 74px); line-height: .99;
-      letter-spacing: -.055em; font-weight: 950;
-    }
-    h1 .accent {
-      color: var(--gold);
-      background: linear-gradient(100deg, #fff0bd 5%, var(--gold) 45%, var(--orange) 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-copy { max-width: 650px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
+    .hero-copy { max-width: 650px; margin: 20px auto 0; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
     .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 30px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -201,7 +197,9 @@
     }
     @media (max-width: 480px) {
       .wrap { width: min(var(--max), calc(100% - 26px)); }
-      .brand-center .brand-logo { width: 120px; }
+      .brand-hero-logo { max-width: 240px; }
+      .curved-heading-svg { margin-top: -45px; }
+      .curved-heading-text { font-size: 22px; }
       .hours-row { font-size: 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -220,16 +218,33 @@
 
   <main>
     <section class="hero wrap">
-      <!-- Logo centrale a inizio pagina (formato .png) -->
-      <div class="brand-center">
-        <img class="brand-logo" src="logo-removebg-preview.png" alt="Lo-Cast Collector Logo">
-        <span class="brand-name">LO-CAST <span>COLLECTOR</span></span>
-        <span class="brand-sub">CARCARE · LIGURIA</span>
+      <!-- Blocco Logo con Titolo ad U integrato -->
+      <div class="brand-hero-container">
+        <img class="brand-hero-logo" src="logo-removebg-preview.png" alt="Lo-Cast Collector Logo">
+        
+        <!-- SVG per il testo curvo ad arco/U -->
+        <svg class="curved-heading-svg" viewBox="0 0 600 160" aria-label="La tua prossima passione ti aspetta.">
+          <defs>
+            <!-- Gradiente dorato/arancione per il testo -->
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#fff0bd" />
+              <stop offset="50%" stop-color="#f3c66a" />
+              <stop offset="100%" stop-color="#f07832" />
+            </linearGradient>
+            <!-- Tracciato dell'arco curvo verso il basso ad U -->
+            <path id="curvePath" d="M 30,30 A 300,160 0 0,0 570,30" fill="transparent" />
+          </defs>
+          <text class="curved-heading-text">
+            <textPath href="#curvePath" startOffset="50%" text-anchor="middle">
+              LA TUA PROSSIMA PASSIONE TI ASPETTA.
+            </textPath>
+          </text>
+        </svg>
       </div>
 
-      <span class="eyebrow" style="margin-top: 15px;">Il mondo del collezionismo</span>
-      <h1>La tua prossima<br><span class="accent">passione ti aspetta.</span></h1>
+      <span class="eyebrow">Il mondo del collezionismo</span>
       <p class="hero-copy">Carte collezionabili, manga, action figure e gadget: uno spazio dedicato a chi ama giocare, collezionare e condividere le proprie passioni.</p>
+
       <div class="actions">
         <a class="btn btn-primary" href="#contatti">Scopri il negozio <span aria-hidden="true">↘</span></a>
         <a class="btn btn-secondary" href="https://www.instagram.com/locastcollector/" target="_blank" rel="noopener noreferrer">Seguici su Instagram ↗</a>
