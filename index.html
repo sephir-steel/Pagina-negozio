@@ -42,7 +42,7 @@
       background: linear-gradient(90deg, transparent, var(--orange), var(--gold), var(--orange), transparent);
     }
     header {
-      padding: 22px 0;
+      padding: 18px 0;
       border-bottom: 1px solid rgba(255,255,255,.07);
       background: rgba(12,12,14,.82);
     }
@@ -50,15 +50,14 @@
       display: flex; align-items: center; justify-content: space-between; gap: 18px;
     }
     .brand {
-      display: inline-flex; align-items: center; gap: 12px;
+      display: inline-flex; align-items: center; gap: 14px;
       text-decoration: none; min-width: 0;
     }
-    .brand-mark {
-      display: grid; place-items: center; flex: 0 0 44px; height: 44px;
-      border: 1px solid var(--line); border-radius: 13px;
-      background: linear-gradient(145deg, rgba(243,198,106,.16), rgba(240,120,50,.08));
-      color: var(--gold); font-size: 23px;
-      box-shadow: inset 0 0 22px rgba(240,120,50,.06);
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(240, 120, 50, 0.35));
     }
     .brand-name { font-weight: 900; letter-spacing: .055em; text-transform: uppercase; line-height: 1.15; }
     .brand-name span { color: var(--gold); }
@@ -184,8 +183,8 @@
     }
     @media (max-width: 480px) {
       .wrap { width: min(var(--max), calc(100% - 26px)); }
-      header { padding: 16px 0; }
-      .brand-mark { width: 39px; height: 39px; flex-basis: 39px; }
+      header { padding: 14px 0; }
+      .brand-logo { width: 42px; height: 42px; }
       .brand-name { font-size: 13px; }
       .brand-sub { font-size: 9px; }
       .nav-link { font-size: 12px; }
@@ -209,7 +208,7 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#" aria-label="Lo-Cast Collector, pagina iniziale">
-        <span class="brand-mark" aria-hidden="true">✦</span>
+        <img class="brand-logo" src="logo-removebg-preview.jpg" alt="Lo-Cast Collector Logo">
         <span class="brand-name">LO-CAST <span>COLLECTOR</span><span class="brand-sub">CARCARE · LIGURIA</span></span>
       </a>
       <a class="nav-link" href="#contatti">Dove siamo ↗</a>
@@ -307,7 +306,6 @@
       <p class="footer-brand">LO-CAST COLLECTOR SNC</p>
       <p>Carcare (SV) · Carte TCG, manga, action figure e collezionismo</p>
       <p>© <span id="year"></span> Lo-Cast Collector. Tutti i diritti riservati.</p>
-      <!-- Inserisci qui la Partita IVA corretta e gli eventuali dati societari richiesti. -->
     </div>
   </footer>
 
